@@ -23,6 +23,32 @@
   body{font-family:var(--font);background:var(--black);color:var(--text-primary);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
   .slide{min-height:100vh;width:100%;display:flex;flex-direction:column;justify-content:center;padding:80px 7vw;position:relative;overflow:hidden;scroll-snap-align:start}
+  #slide-0,#slide-20{isolation:isolate}
+  #slide-0::before,#slide-20::before{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:min(300vmin,3040px);
+    height:min(300vmin,3040px);
+    background:url('04-small.png') center/contain no-repeat;
+    transform:translate(-50%,-50%);
+    transform-origin:center;
+    opacity:.5;
+    filter:saturate(.9);
+    pointer-events:none;
+    z-index:0;
+    animation:subtle-orb-spin 120s linear infinite;
+  }
+  #slide-0>*,
+  #slide-20>*{position:relative;z-index:1}
+  @keyframes subtle-orb-spin{
+    from{transform:translate(-50%,-50%) rotate(0deg)}
+    to{transform:translate(-50%,-50%) rotate(360deg)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #slide-0::before,#slide-20::before{animation:none}
+  }
 
   .nav{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:7px}
   .nav-dot{width:7px;height:7px;border-radius:50%;background:var(--grey-mid);border:none;cursor:pointer;transition:all .35s ease;padding:0}
@@ -134,7 +160,7 @@
 
   /* Eugene layout */
   .leader-layout{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;margin-top:12px}
-  .leader-photo{width:200px;height:200px;border-radius:50%;background:var(--grey-dark);border:3px solid var(--grey-mid);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;flex-shrink:0}
+  .leader-photo{width:600px;height:600px;border-radius:50%;background:var(--grey-dark);border:3px solid var(--grey-mid);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;flex-shrink:0}
   .leader-photo::after{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
   .leader-photo .photo-label{font-size:.65rem}
 
@@ -198,7 +224,6 @@
     <div class="divider t-fade" style="margin-top:44px"></div>
     <p class="cover-sub t-fade">We turn complex services into clear, credible systems that drive trust, adoption, and growth.</p>
   </div>
-  <div class="slide-number">Cover</div>
 </section>
 
 <!-- TEAM -->
@@ -461,7 +486,6 @@
     <div class="slide-label t-fade">Closing</div>
     <div class="closing-statement t-up">This is not a brand project.<br><br>It is the system that supports <span>occupancy</span>, <span>trust</span>, and <span>long-term growth</span>.</div>
   </div>
-  <div class="slide-number">20</div>
 </section>
 
 <!-- CASE STUDIES BENTO -->
